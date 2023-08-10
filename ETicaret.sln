@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETicaret.Model", "ETicaret.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ETicaret.Repository", "ETicaret.Repository\ETicaret.Repository.csproj", "{AFBCC2C3-9CA8-4A0B-BE87-0E18E08F83EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicaret.Web", "ETicaretWeb\ETicaret.Web.csproj", "{6D84BEC2-6332-48A2-90DD-1AF274272355}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETicaret.Web", "ETicaret.Web\ETicaret.Web.csproj", "{6D71EAAF-319D-4C3E-BB07-A1A029BFBFDA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{AFBCC2C3-9CA8-4A0B-BE87-0E18E08F83EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFBCC2C3-9CA8-4A0B-BE87-0E18E08F83EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFBCC2C3-9CA8-4A0B-BE87-0E18E08F83EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6D84BEC2-6332-48A2-90DD-1AF274272355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6D84BEC2-6332-48A2-90DD-1AF274272355}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6D84BEC2-6332-48A2-90DD-1AF274272355}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6D84BEC2-6332-48A2-90DD-1AF274272355}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D71EAAF-319D-4C3E-BB07-A1A029BFBFDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D71EAAF-319D-4C3E-BB07-A1A029BFBFDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D71EAAF-319D-4C3E-BB07-A1A029BFBFDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D71EAAF-319D-4C3E-BB07-A1A029BFBFDA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -66,7 +66,7 @@ function RolSil(id) {
     if (confirm("Kaydı silmek istediğinizden emin misiniz?")) {
         $.ajax({
             type: "DELETE",
-            url: `${BASE_API_URI}/api/Rol/Sil?id=${id}`,
+            url: `${BASE_API_URI}/api/Rol/${id}`,
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function (response) {
