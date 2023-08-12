@@ -1,90 +1,53 @@
 ﻿function RolleriGetir() {
-    $.ajax({
-        type: "GET",
-        url: `${BASE_API_URI}/api/Rol/TumRoller`,
-        dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        success: function (response) {
-            if (response.success) {
+    Get("Rol/TumRoller", (data) => {
+        var html = `<table class="table table-hover">` +
+            `<tr><th style="width:50px">Id</th><th>Rol Adı</th><th></th></tr>`;
 
-                var html = `<table class="table table-hover">` +
-                    `<tr><th style="width:50px">Id</th><th>Rol Adı</th><th></th></tr>`;
+        var arr = data;
 
-                var arr = response.data;
-
-                for (var i = 0; i < arr.length; i++) {
-                    html += `<tr>`;
-                    html += `<td>${arr[i].id}</td><td>${arr[i].ad}</td>`;
-                    html += `<td><i class="bi bi-trash text-danger" onclick='RolSil(${arr[i].id})'></i><i class="bi bi-pencil-square" onclick='RolDuzenle(${arr[i]})'></i></td>`;
-                    html += `</tr>`
-                }
-                html += `</table>`;
-
-                $("#divRoller").html(html);
-            }
-            else {
-                alert(response.message);
-            }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert(XMLHttpRequest + "-" + textStatus + "-" + errorThrown);
+        for (var i = 0; i < arr.length; i++) {
+            html += `<tr>`;
+            html += `<td>${arr[i].id}</td><td>${arr[i].ad}</td>`;
+            html += `<td><i class="bi bi-trash text-danger" onclick='RolSil(${arr[i].id})'></i><i class="bi bi-pencil-square" onclick='RolDuzenle(${arr[i].id},"${arr[i].ad}")'></i></td>`;
+            html += `</tr>`
         }
+        html += `</table>`;
+
+        $("#divRoller").html(html);
     });
 }
 
+let selectedRolId = 0;
+
+function YeniRol() {
+    selectedRolId = 0;
+    $("#inputRolAd").val("");
+    $("#rolModal").modal("show");
+}
 function RolKaydet() {
     var rol = {
-        Id: 0,
+        Id: selectedRolId,
         Ad: $("#inputRolAd").val()
     };
-
-    $.ajax({
-        type: "POST",
-        url: `${BASE_API_URI}/api/Rol/Kaydet`,
-        dataType: "json",
-        contentType: "application/json; charset=utf-8",
-        data: JSON.stringify(rol),
-        success: function (response) {
-            if (response.success) {
-                RolleriGetir();
-            }
-            else {
-                alert(response.message);
-            }
-        },
-        error: function (XMLHttpRequest, textStatus, errorThrown) {
-            alert(XMLHttpRequest + "-" + textStatus + "-" + errorThrown);
-        }
+    Post("Rol/Kaydet", rol, (data) => {
+        RolleriGetir();
+        $("#rolModal").modal("hide");
     });
-
 }
-function RolDuzenle(rol) {
 
-}
 
 function RolSil(id) {
-    if (confirm("Kaydı silmek istediğinizden emin misiniz?")) {
-        $.ajax({
-            type: "DELETE",
-            url: `${BASE_API_URI}/api/Rol/${id}`,
-            dataType: "json",
-            contentType: "application/json; charset=utf-8",
-            success: function (response) {
-                if (response.success) {
-                    RolleriGetir();
-                }
-                else {
-                    alert(response.message);
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert(XMLHttpRequest + "-" + textStatus + "-" + errorThrown);
-            }
-        });
-    }
+    Delete(`Rol/Sil?id=${id}`, (data) => {
+        RolleriGetir();
+    });
+}
+
+function RolDuzenle(id, ad) {
+    selectedRolId = id;
+    $("#inputRolAd").val(ad);
+    $("#rolModal").modal("show");
 }
 
 $(document).ready(function () {
     RolleriGetir();
 });
-  

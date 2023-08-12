@@ -1,7 +1,17 @@
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Session kullanabilmek için bunu ekliyoruz
+builder.Services.AddSession(options => {
+    options.IdleTimeout = TimeSpan.FromMinutes(10);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+// Actif HttpContext'e eriþebilmek için bunu ekliyoruz
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
@@ -19,6 +29,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseSession();
 
 app.MapControllerRoute(
 name: "area",

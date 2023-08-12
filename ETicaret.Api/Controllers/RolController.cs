@@ -7,7 +7,7 @@ using Newtonsoft.Json.Linq;
 
 namespace ETicaret.Api.Controllers
 {
-    //  [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]")]
     [ApiController]
     public class RolController : BaseController
@@ -68,7 +68,8 @@ namespace ETicaret.Api.Controllers
             };
         }
 
-        [HttpDelete("{id}")]
+
+        [HttpDelete("Sil")]
         public dynamic Sil(int id)
         {
             if (id <= 0)
@@ -76,9 +77,10 @@ namespace ETicaret.Api.Controllers
                 return new
                 {
                     success = false,
-                    message = "Geçersiz id",
+                    message = "Geçersiz id"
                 };
             }
+
             repo.RolRepository.RolSil(id);
             return new
             {
