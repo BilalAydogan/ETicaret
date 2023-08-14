@@ -14,6 +14,7 @@ namespace ETicaret.Repository
         private RolRepository rolRepository;
         private KullaniciRepository kullaniciRepository;
         private UrunRepository urunRepository;
+        private V_KategorilerRepository tumKategorilerRepository;
         public RepositoryWrapper(RepositoryContext context)
         {
             this.context = context;
@@ -28,6 +29,17 @@ namespace ETicaret.Repository
                 return kategoriRepository;
             }
         }
+        public V_KategorilerRepository TumKategorilerRepository
+        {
+            get
+            {
+                if (tumKategorilerRepository == null)
+                    tumKategorilerRepository = new V_KategorilerRepository(context);
+                return tumKategorilerRepository;
+            }
+        }
+
+
         public RolRepository RolRepository
         {
             get

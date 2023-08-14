@@ -4,6 +4,9 @@ function Get(action, success) {
     $.ajax({
         type: "GET",
         url: `${BASE_API_URI}/${action}`,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', `Bearer ${TOKEN}`);
+        },
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         success: function (response) {
@@ -24,6 +27,9 @@ function Post(action, data, success) {
     $.ajax({
         type: "POST",
         url: `${BASE_API_URI}/${action}`,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('Authorization', `Bearer ${TOKEN}`);
+        },
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         data: JSON.stringify(data),
@@ -50,6 +56,9 @@ function Delete(action, success, ask = true) {
         $.ajax({
             type: "DELETE",
             url: `${BASE_API_URI}/${action}`,
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader('Authorization', `Bearer ${TOKEN}`);
+            },
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: function (response) {

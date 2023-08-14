@@ -1,4 +1,5 @@
 ﻿using ETicaret.Model;
+using ETicaret.Model.Views;
 using ETicaret.Repository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -23,15 +24,27 @@ namespace ETicaret.Api.Controllers
             if (!cache.TryGetValue("TumKategoriler", out items))
             {
                 items = repo.KategoriRepository.FindAll().ToList<Kategori>();
-                cache.Set("TumKategoriler", items, DateTimeOffset.UtcNow.AddHours(1));
+                cache.Set("TumKategoriler", items, DateTimeOffset.UtcNow.AddSeconds(1));
             }
             return new
             {
-                sucess = true,
-                date = items
+                success = true,
+                data = items
             };
         }
-        [Authorize(Roles = "Admin,Personel")]
+        [HttpGet("KategoriOzetListe")]
+        //[Authorize(Roles = "Admin")]
+        public dynamic KategoriOzetListe()
+        {
+            List<V_KategoriOzetListe> items = repo.KategoriRepository.KategoriOzetListe();
+            return new
+            {
+                success = true,
+                data = items
+            };
+
+        }
+        //[Authorize(Roles = "Admin,Personel")]
         [HttpPost("Kaydet")]
         public dynamic Kaydet([FromBody] dynamic model) {
             dynamic json = JObject.Parse(model.GetRawText());
@@ -65,8 +78,8 @@ namespace ETicaret.Api.Controllers
             Kategori item = repo.KategoriRepository.FindByCondition(a =>a.Id == id).SingleOrDefault<Kategori>();
             return new
             {
-                sucess = true,
-                date = item
+                success = true,
+                data = item
             };
         }
         [HttpGet()]
@@ -75,8 +88,8 @@ namespace ETicaret.Api.Controllers
             List<Kategori> items = repo.KategoriRepository.FindByCondition(a => a.UstKategoriId==null).ToList<Kategori>();
             return new
             {
-                sucess = true,
-                date = items
+                success = true,
+                data = items
             };
         }
         [HttpGet("AltKategoriler/{id}")]
@@ -85,8 +98,8 @@ namespace ETicaret.Api.Controllers
             List<Kategori> items = repo.KategoriRepository.FindByCondition(a => a.UstKategoriId == id).ToList<Kategori>();
             return new
             {
-                sucess = true,
-                date = items
+                success = true,
+                data = items
             };
         }
         [HttpGet("AnaSayfaKategorileri")]
@@ -95,11 +108,27 @@ namespace ETicaret.Api.Controllers
             List<Kategori> items = repo.KategoriRepository.AnaSayfaKategorileriniGetir().ToList<Kategori>();
             return new
             {
-                sucess = true,
-                date = items
+                success = true,
+                data = items
             };
         }
+        [HttpDelete("Sil")]
+        public dynamic Sil(int id)
+        {
+            if (id <= 0)
+            {
+                return new
+                {
+                    success = false,
+                    message = "Geçersiz id"
+                };
+            }
 
-
+            repo.KategoriRepository.KategoriSil(id);
+            return new
+            {
+                success = true
+            };
+        }
     }
 }

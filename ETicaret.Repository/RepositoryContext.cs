@@ -33,6 +33,9 @@ namespace ETicaret.Repository
         public DbSet<UrunKategori> UrunKategorileri { get; set; }
         public DbSet<UrunOzellik> UrunOzellikleri { get; set; }
         public DbSet<Yorum> Yorumlar { get; set; }
-        public DbSet<V_AktifKullanicilar> AktifKullanicilar { get; set; }  
+        public DbSet<V_AktifKullanicilar> AktifKullanicilar { get; set; }
+
+        public DbSet<V_KategoriOzetListe> KategoriOzetListe { get; set; }
+        public DbSet<V_Kategoriler> TumKategoriler { get; set; }
     }
 }

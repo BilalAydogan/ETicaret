@@ -8,5 +8,7 @@ namespace ETicaret.Web.Areas.Admin.Controllers
         public IActionResult Index() =>  View();
         public IActionResult Rol() => View();
 
+        public IActionResult Kategori() => View();
+
     }
 }

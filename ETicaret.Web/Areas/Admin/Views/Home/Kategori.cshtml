@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<script src="~/js/admin/kategori.js" asp-append-version="true"></script>
+<h2>Kategoriler</h2>
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" onclick="YeniKategori()" data-bs-target="#kategoriModal">
+    Yeni Kategori Ekle
+</button>
+<div id="divKategori">
+</div>
+
+<div class="modal fade" id="kategoriModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Kategori Bilgileri</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label for="inputKategoriAd" class="form-label">Kategori Adı</label>
+                <input type="text" id="inputKategoriAd" class="form-control">
+            
+                <label for="selectUstKategoriler" class="form-label">Ust Kategori</label>
+                <select type="text" id="selectUstKategoriler" class="form-control">
+                    <option value="" disabled selected>Ust Kategori Seçiniz</option>
+                </select>
+            
+                <label for="inputSira" class="form-label">Sıra</label>
+                <input type="text" id="inputSira" class="form-control">
+            
+                <input class="form-check-input" type="checkbox" id="inputAktifMi">
+                <label class="form-check-label" for="inputAktifMi">
+                    Aktif Mi?
+                </label>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Vazgeç</button>
+                <button type="button" class="btn btn-primary" onclick="KategoriKaydet()">Kaydet</button>
+            </div>
+        </div>
+    </div>
+</div>
+

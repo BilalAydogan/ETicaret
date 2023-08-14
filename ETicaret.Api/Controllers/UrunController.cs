@@ -22,8 +22,8 @@ namespace ETicaret.Api.Controllers
             List<Urun> items = repo.UrunRepository.UrunleriGetir(kategoriId).ToList<Urun>();
             return new
             {
-                sucess = true,
-                date = items
+                success = true,
+                data = items
             };
         }
         [Authorize(Roles = "Admin,Personel")]
